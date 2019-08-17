@@ -1,0 +1,13 @@
+*{
+    padding: 0px;
+    margin: 0px;
+    list-style: none;
+}
+html,body,#webpack{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+    background-color: greenyellow;
+    display: flex;
+}
