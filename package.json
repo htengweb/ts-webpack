@@ -1,37 +1,45 @@
 {
-    "name": "ts-webpack",
-    "version": "1.0.0",
-    "description": "ts webpack",
-    "scripts": {
-        "dev": "webpack-dev-server --progress --colors --watch",
-        "build": "webpack --config webpack.config.js --progress --colors",
-        "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "keywords": [
-        "typescript",
-        "webpack"
-    ],
-    "author": "huangteng",
-    "license": "ISC",
-    "devDependencies": {
-        "autoprefixer": "^9.6.1",
-        "clean-webpack-plugin": "^3.0.0",
-        "css-loader": "^3.2.0",
-        "extract-text-webpack-plugin": "^3.0.2",
-        "html-webpack-plugin": "^3.2.0",
-        "node-sass": "^4.12.0",
-        "postcss-loader": "^3.0.0",
-        "sass-loader": "^7.2.0",
-        "style-loader": "^1.0.0",
-        "url-loader": "^2.1.0",
-        "webpack": "^4.39.2",
-        "webpack-cli": "^3.3.6",
-        "webpack-dev-server": "^3.8.0"
-    },
-    "browserslist": [
-        "last 1 version",
-        "> 1%",
-        "IE 8",
-        "chrome 32"
-    ]
+  "name": "ts-webpack",
+  "version": "1.0.0",
+  "description": "ts webpack",
+  "scripts": {
+    "dev": "webpack-dev-server --progress --colors --watch",
+    "build": "webpack --config webpack.config.js --progress --colors",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "typescript",
+    "webpack"
+  ],
+  "author": "huangteng",
+  "license": "ISC",
+  "dependencies": {
+    "@types/react": "^16.9.2",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
+    "vue": "^2.6.10"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "autoprefixer": "^9.6.1",
+    "babel-loader": "^8.0.6",
+    "clean-webpack-plugin": "^3.0.0",
+    "copy-webpack-plugin": "^5.0.4",
+    "css-loader": "^3.2.0",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "file-loader": "^4.2.0",
+    "html-webpack-plugin": "^3.2.0",
+    "mini-css-extract-plugin": "^0.8.0",
+    "node-sass": "^4.12.0",
+    "optimize-css-assets-webpack-plugin": "^5.0.3",
+    "postcss-loader": "^3.0.0",
+    "sass-loader": "^7.2.0",
+    "style-loader": "^1.0.0",
+    "uglifyjs-webpack-plugin": "^2.2.0",
+    "url-loader": "^2.1.0",
+    "webpack": "^4.39.2",
+    "webpack-cli": "^3.3.6",
+    "webpack-dev-server": "^3.8.0"
+  }
 }

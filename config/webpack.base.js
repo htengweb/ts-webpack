@@ -26,12 +26,12 @@ module.exports = {
         main: './src/main.js'
     },
     output: {
-        path: path.resolve(__dirname, 'dist'),
-        filename: 'js/[name].[chunkhash:8].js',
-        publicPath: './', // 静态资源加地址前缀
+        path: path.join(__dirname, 'dist'),
+        filename: '[name].[chunkhash:8].js',
+        publicPath: './js/',
     },
     devServer: {
-        contentBase: path.resolve(__dirname, './public'), // 开启开发服务后访问的地址
+        contentBase: path.join(__dirname, './public'), // 开启开发服务后访问的地址
         port: 8000,
         hot: true, // 热模块替换
         open: true,// 启动自动打开页面
@@ -46,8 +46,6 @@ module.exports = {
         }
     },
     module: {
-        // 忽略解析依赖
-        noParse:/(vue|react)/,
         rules: [
             {
                 test: /\.js$/,
@@ -68,7 +66,6 @@ module.exports = {
                     {
                         loader: MiniCssExtractPlugin.loader,
                         options: {
-                            insertAt: 'top',// 打包后的css文件提取到顶部
                             publicPath: './'
                         }
                     },
@@ -83,7 +80,6 @@ module.exports = {
                     {
                         loader: MiniCssExtractPlugin.loader,
                         options: {
-                            insertAt: 'top',
                             publicPath: './'
                         }
                     },
@@ -98,9 +94,7 @@ module.exports = {
                         loader: 'url-loader',
                         options: {
                             limit: 8192,
-                            outputPath: 'img',
-                            publicPath: '../img', // 打包后图片引用相对地址 
-                            // name: '[name].[ext]',// 配置打包后图片的名称
+                            outputPath: './img/'
                         }
                     }
                 ]
@@ -112,17 +106,12 @@ module.exports = {
             title: 'webpack typescript',
             template: './public/index.html', // 指定html的模板文件
             filename: 'index.html', // 生成后的文件名
-            chunks: ['main','vendor','common'], // 只引用对应的代码模块
+            chunks: ['main'], // 只引用对应的代码模块
             minify: {
                 // removeAttributeQuotes: true,// 删除引号
                 // collapseWhitespace: true, // 去掉空行
                 // removeComments: true, // 去掉注释
             }
-        }),
-        new webpack.DefinePlugin({
-            'process.env': {
-                NODE_ENV: JSON.stringify('production')
-            },
         }),
         new CleanWebpackPlugin({
             cleanStaleWebpackAssets: true
@@ -139,8 +128,7 @@ module.exports = {
         // 提取css文件
         new MiniCssExtractPlugin({
             filename: 'css/[name].css'
-        }),
-        // new webpack.IgnorePlugin(/\.\/dev/, /\/config$/),
+        })
         // new webpack.ProgressPlugin(),
         // new webpack.HotModuleReplacementPlugin(),
         // 变量注入到全局
@@ -151,7 +139,6 @@ module.exports = {
     // 不需要打包的外部模块
     externals: {
         // jquery: '$'
-        // React: 'react'
     },
     // 源码映射文件，方便调试
     // 1 source-map 会单独生成一个map文件。
@@ -174,41 +161,20 @@ module.exports = {
         ],
         // 别名
         alias: {
-            '@': path.resolve(__dirname,'src'),// 注意，css中引用需加~，如：'~@/**/*.png'
+            @: './src/'
         },
         // 引入文件时省略后缀名，从左（优先）往右依次查找
-        extensions: ['.js', '.css', '.json']
+        extendsions: ['.js', '.css', '.json']
     },
     // 优化项
     optimization: {
         minimizer: [
-            // 压缩css文件
-            new OptimizeCSSAssetsPlugin({}),
-            // 压缩js文件
-            // new UglifyJsPlugin({
-            //     cache: true, // 是否缓存
-            //     parallel: true,   // 是否并发
-            //     sourceMap: true // 源码映射
+            new OptimizeCSSAssetsPlugin({// 压缩css文件
+                
+            }),
+            // new UglifyJsPlugin({// 压缩js文件
+            //     cache: true
             // }),
-        ],
-        // 分割代码块
-        splitChunks: {
-            cacheGroups: { // 缓存租
-                common: { // 公共的模块
-                    chunks: 'initial', // 从什么地方开始,刚开始
-                    minSize: 0, // 大于多少抽离
-                    minChunks: 1, // 使用多少次以上抽离抽离
-                    name: 'common', // 提取后的文件名称，在HtmlWebpackPlugin 的 chunks中引用
-                },
-                vendor: { // 抽离第三方库
-                    priority: 1, // 优先抽离第三方库
-                    test: /node_modules/,// 从node_modules中抽
-                    chunks: 'initial',
-                    minSize: 0,
-                    minChunks: 1,// 最小引用次数时抽离
-                    name: 'vendor'
-                }
-            }
-        }
+        ]
     }
 }
