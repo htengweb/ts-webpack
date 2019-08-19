@@ -1,12 +1,11 @@
-import Vue from 'vue';
 import React from 'react';
-// import { render } from 'react-dom';
+import { render } from 'react-dom';
 import '@/styles/index.scss';
-// import App from './components/a';
+import App from './components/a';
 
 console.log(React)
 setTimeout(() => {
-    console.log(Vue)
+    console.log(App)
 }, 0);
 
 // render(

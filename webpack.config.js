@@ -21,7 +21,6 @@ for (var devName in interfaces) {
 // 获取当前IP地址
 console.log("IPAdress", IPAdress)
 module.exports = {
-    mode: 'production',
     entry: {
         main: './src/main.js'
     },
