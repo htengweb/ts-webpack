@@ -14,4 +14,3 @@ setTimeout(() => {
 //     '<h1>Hello, world! < /h1>',
 //     document.getElementById('root')
 // );
-console.log(65151515)
